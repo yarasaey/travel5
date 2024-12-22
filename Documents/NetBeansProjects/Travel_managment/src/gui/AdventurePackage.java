@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+///////////singelton pattern//////////
 public class AdventurePackage implements TravelPackage {
     @Override
     public String getPackageName() {

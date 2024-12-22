@@ -12,13 +12,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+////////////////////////////////singelton pattern//////////
 public class PackageSelectionPage extends JFrame {
 
     // HashMap to store user and their selected packages
     private HashMap<String, ArrayList<String>> customerPackages;
 
     public PackageSelectionPage() {
-        setTitle("Package Selection");
+        setTitle("Trip type");
         setSize(400, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);  // Center the window
@@ -36,14 +37,14 @@ public class PackageSelectionPage extends JFrame {
         getContentPane().setBackground(bgColor);
 
         // Components
-        JLabel lblPackage = new JLabel("Select a Package:");
+        JLabel lblPackage = new JLabel("Select your type:");
         lblPackage.setFont(new Font("Arial", Font.PLAIN, 14));
 
         String[] packageOptions = { "Luxury", "Adventure", "Cultural" };
         JComboBox<String> comboPackage = new JComboBox<>(packageOptions);
         comboPackage.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        JButton btnSelectPackage = new JButton("Select Package");
+        JButton btnSelectPackage = new JButton("submit");
         btnSelectPackage.setBackground(buttonColor);
         btnSelectPackage.setForeground(buttonTextColor);
         btnSelectPackage.setFont(buttonFont);

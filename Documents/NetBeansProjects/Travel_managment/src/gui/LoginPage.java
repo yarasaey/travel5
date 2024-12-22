@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-
+///////////////////////////// login page with hashmap//////////
 public class LoginPage extends JFrame {
     private JTextField txtUsername;
     private JPasswordField txtPassword;
@@ -28,15 +28,17 @@ public class LoginPage extends JFrame {
         userCredentials.put("guest", "guest123");
 
         setTitle("Login - Travel Management System");
-        setSize(400, 300);
+        setSize(450, 350);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);  // Center the window
 
         // Setting up the font and colors
-        Font labelFont = new Font("Arial", Font.BOLD, 14);
-        Font textFont = new Font("Arial", Font.PLAIN, 14);
-        Font buttonFont = new Font("Arial", Font.BOLD, 14);
+        Font labelFont = new Font("Segoe UI", Font.BOLD, 16);
+        Font textFont = new Font("Segoe UI", Font.PLAIN, 14);
+        Font buttonFont = new Font("Segoe UI", Font.BOLD, 14);
         Color bgColor = new Color(230, 230, 250);  // Lavender background color
+        Color buttonColor = new Color(100, 149, 237);  // Cornflower blue for buttons
+        Color hoverColor = new Color(70, 130, 180);  // Darker blue for hover effect
 
         // Set background color
         getContentPane().setBackground(bgColor);
@@ -44,31 +46,54 @@ public class LoginPage extends JFrame {
         // Components
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setFont(labelFont);
+        lblUsername.setForeground(Color.DARK_GRAY);
 
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setFont(labelFont);
+        lblPassword.setForeground(Color.DARK_GRAY);
 
         txtUsername = new JTextField();
         txtUsername.setFont(textFont);
+        txtUsername.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        txtUsername.setPreferredSize(new Dimension(250, 30));
 
         txtPassword = new JPasswordField();
         txtPassword.setFont(textFont);
+        txtPassword.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        txtPassword.setPreferredSize(new Dimension(250, 30));
 
         chkRememberMe = new JCheckBox("Remember Me");
         chkRememberMe.setFont(textFont);
         chkRememberMe.setBackground(bgColor);
+        chkRememberMe.setForeground(Color.DARK_GRAY);
 
         JButton btnLogin = new JButton("Login");
-        btnLogin.setBackground(new Color(100, 149, 237));  // Cornflower blue
+        btnLogin.setBackground(buttonColor);
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(buttonFont);
+        btnLogin.setFocusPainted(false);
+        btnLogin.setPreferredSize(new Dimension(250, 40));
+        btnLogin.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
         JButton btnForgotPassword = new JButton("Forgot Password?");
-        btnForgotPassword.setFont(new Font("Arial", Font.ITALIC, 12));
+        btnForgotPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         btnForgotPassword.setBackground(bgColor);
-        btnForgotPassword.setForeground(new Color(100, 149, 237));
+        btnForgotPassword.setForeground(buttonColor);
         btnForgotPassword.setBorderPainted(false);
         btnForgotPassword.setFocusPainted(false);
+
+        // Hover effect for buttons
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogin.setBackground(hoverColor);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogin.setBackground(buttonColor);
+            }
+        });
 
         // Action listeners
         btnLogin.addActionListener(new ActionListener() {
@@ -91,7 +116,7 @@ public class LoginPage extends JFrame {
         // Layout setup using GridBagLayout for alignment and spacing
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);  // Padding around components
+        gbc.insets = new Insets(15, 15, 15, 15);  // Padding around components
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Add components to layout
@@ -128,10 +153,7 @@ public class LoginPage extends JFrame {
 
     private boolean validateLogin(String username, String password) {
         // Validate login using the HashMap
-        if (userCredentials.containsKey(username)) {
-            return userCredentials.get(username).equals(password);
-        }
-        return false;
+        return userCredentials.containsKey(username) && userCredentials.get(username).equals(password);
     }
 
     public static void main(String[] args) {

@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+//singelton pattern
 public class BookingManager {
     // Singleton instance
     private static BookingManager instance;

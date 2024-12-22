@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+////////////////////////HotelReservationPage///////
 public class HotelReservationPage extends JFrame {
 
     // Declare the HashMap to store hotel reservations

@@ -6,7 +6,7 @@
 package gui;
 import javax.swing.*;
 import java.awt.*;
-
+//gui of accommodationSelectionPage
 public class AccommodationSelectionPage extends JFrame {
 
     public AccommodationSelectionPage() {

@@ -9,6 +9,8 @@ package gui;
  *
  * @author icc
  */
+
+////////////singlton patttern///////
 public interface TravelPackage {
     String getPackageName();
     

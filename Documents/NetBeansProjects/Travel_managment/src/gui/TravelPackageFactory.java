@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+////////////////////////////////////////singlton pattern////
 public class TravelPackageFactory {
 
     public static TravelPackage getTravelPackage(String packageType) {

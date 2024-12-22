@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+/////////factory pattern////
 public class Hostel implements Accommodation {
     @Override
     public String getAccommodationType() {

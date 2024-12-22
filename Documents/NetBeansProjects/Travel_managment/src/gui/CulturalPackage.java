@@ -9,7 +9,7 @@ package gui;
  *
  * @author icc
  */
-
+///////////singelton pattern//////////
     public class CulturalPackage implements TravelPackage {
     @Override
     public String getPackageName() {

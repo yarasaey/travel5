@@ -9,6 +9,8 @@ package gui;
  *
  * @author icc
  */
+
+/////////factory pattern////
 public class AccommodationFactory {
 
     public static Accommodation getAccommodation(String accommodationType) {

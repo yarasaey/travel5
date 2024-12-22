@@ -9,6 +9,8 @@ package gui;
  *
  * @author icc
  */
+
+////////////factory pattern///////
 public interface Accommodation {
       String getAccommodationType();
 }

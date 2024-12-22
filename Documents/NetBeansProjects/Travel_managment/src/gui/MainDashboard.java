@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package gui;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class MainDashboard extends JFrame {
 
     public MainDashboard() {
         setTitle("Travel Management System - Dashboard");
-        setSize(500, 500);  // Increased size for better spacing
+        setSize(600, 700);  // Increased size for better spacing
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);  // Center the window on the screen
 
@@ -25,48 +24,25 @@ public class MainDashboard extends JFrame {
         travelData.put("Hotels", new ArrayList<>());
         travelData.put("Customers", new ArrayList<>());
 
-        // Setting up the font and colors
-        Font buttonFont = new Font("Arial", Font.BOLD, 16);
-        Color bgColor = new Color(230, 230, 250);  // Lavender background color
+        // Set background color or background image
+        ImageIcon backgroundImage = new ImageIcon("path/to/your/image.jpg");  // If you have a background image
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        setContentPane(backgroundLabel);
+        setLayout(new GridBagLayout());
+
+        // Set background color and design
         Color buttonColor = new Color(100, 149, 237);  // Cornflower blue button color
         Color buttonTextColor = Color.WHITE;
+        Font buttonFont = new Font("Arial", Font.BOLD, 16);
 
-        // Set background color
-        getContentPane().setBackground(bgColor);
-
-        // Components (Buttons)
-        JButton btnFlightBooking = new JButton("Flight Booking");
-        btnFlightBooking.setBackground(buttonColor);
-        btnFlightBooking.setForeground(buttonTextColor);
-        btnFlightBooking.setFont(buttonFont);
-
-        JButton btnHotelBooking = new JButton("Hotel Reservation");
-        btnHotelBooking.setBackground(buttonColor);
-        btnHotelBooking.setForeground(buttonTextColor);
-        btnHotelBooking.setFont(buttonFont);
-
-        JButton btnCustomerPreferences = new JButton("Customer Preferences");
-        btnCustomerPreferences.setBackground(buttonColor);
-        btnCustomerPreferences.setForeground(buttonTextColor);
-        btnCustomerPreferences.setFont(buttonFont);
-
-        // New Button to create and display a customer profile
-        JButton btnCreateCustomerProfile = new JButton("Create Customer Profile");
-        btnCreateCustomerProfile.setBackground(buttonColor);
-        btnCreateCustomerProfile.setForeground(buttonTextColor);
-        btnCreateCustomerProfile.setFont(buttonFont);
-
-        // New Button to open the PackageSelectionPage
-        JButton btnPackageSelection = new JButton("Package Selection");
-        btnPackageSelection.setBackground(buttonColor);
-        btnPackageSelection.setForeground(buttonTextColor);
-        btnPackageSelection.setFont(buttonFont);
-
-        // New Button to open the AccommodationSelectionPage
-        JButton btnAccommodationSelection = new JButton("Accommodation Selection");
-        btnAccommodationSelection.setBackground(buttonColor);
-        btnAccommodationSelection.setForeground(buttonTextColor);
-        btnAccommodationSelection.setFont(buttonFont);
+        // Buttons with enhanced design
+        JButton btnFlightBooking = createStyledButton("Flight Booking", buttonColor, buttonTextColor, buttonFont);
+        JButton btnHotelBooking = createStyledButton("Hotel Reservation", buttonColor, buttonTextColor, buttonFont);
+        JButton btnCustomerPreferences = createStyledButton("Customer Preferences", buttonColor, buttonTextColor, buttonFont);
+        JButton btnCreateCustomerProfile = createStyledButton("Customer Profile", buttonColor, buttonTextColor, buttonFont);
+        JButton btnPackageSelection = createStyledButton("Travel Type", buttonColor, buttonTextColor, buttonFont);
+        JButton btnAccommodationSelection = createStyledButton("Accommodation Selection", buttonColor, buttonTextColor, buttonFont);
+        JButton btnClonePackage = createStyledButton("Travel Information", buttonColor, buttonTextColor, buttonFont);
 
         // Add action listeners to buttons
         btnFlightBooking.addActionListener(e -> openFlightBooking());
@@ -88,18 +64,28 @@ public class MainDashboard extends JFrame {
             System.out.println(customer);
 
             // Optionally show it in a dialog
-            JOptionPane.showMessageDialog(this, "Customer Profile created: " + customer);
+            JOptionPane.showMessageDialog(this, "Customer Profile  " + customer);
         });
 
-        // Layout setup using GridBagLayout for alignment and spacing
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 15, 15, 15);  // Padding around buttons
+        // Button for cloning a travel package
+        btnClonePackage.addActionListener(e -> {
+            // Create an original tour package
+            TourPackage originalPackage = new TourPackage("The destination and price", "Hawaii", 1200.0);
+
+            // Clone the package
+            TourPackage clonedPackage = originalPackage.clone();
+
+            // Show cloned package details
+            JOptionPane.showMessageDialog(this, "Travel: " + clonedPackage);
+        });
 
         // Add buttons to layout with GridBagConstraints
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(20, 20, 20, 20);  // Padding around buttons
+
+        // Adding buttons to the frame
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnFlightBooking, gbc);
 
         gbc.gridy = 1;
@@ -111,13 +97,40 @@ public class MainDashboard extends JFrame {
         gbc.gridy = 3;
         add(btnCreateCustomerProfile, gbc);
 
-        // Add the new button for Package Selection
         gbc.gridy = 4;
         add(btnPackageSelection, gbc);
 
-        // Add the new button for Accommodation Selection
         gbc.gridy = 5;
         add(btnAccommodationSelection, gbc);
+
+        // Add the Clone Package button
+        gbc.gridy = 6;
+        add(btnClonePackage, gbc);
+    }
+
+    // Helper method to create styled buttons
+    private JButton createStyledButton(String text, Color bgColor, Color textColor, Font font) {
+        JButton button = new JButton(text);
+        button.setBackground(bgColor);
+        button.setForeground(textColor);
+        button.setFont(font);
+        button.setPreferredSize(new Dimension(250, 50));  // Fixed size for consistency
+        button.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));  // Add border around button
+        button.setFocusPainted(false);
+        
+        // Add hover effect for buttons
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(70, 130, 180)); // Darker blue on hover
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(bgColor);  // Restore original color
+            }
+        });
+        return button;
     }
 
     // Method to open the Flight Booking page and pass the HashMap
@@ -152,7 +165,6 @@ public class MainDashboard extends JFrame {
         SwingUtilities.invokeLater(() -> new MainDashboard().setVisible(true));
     }
 }
-
 
 
 

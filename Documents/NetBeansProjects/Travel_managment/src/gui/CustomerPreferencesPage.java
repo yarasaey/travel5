@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+///////////////////CustomerPreferencesPage gui///////////////////
 public class CustomerPreferencesPage extends JFrame {
 
     // Declare the HashMap to store customer preferences

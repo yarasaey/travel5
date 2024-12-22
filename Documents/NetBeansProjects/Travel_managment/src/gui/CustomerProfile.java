@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+///////////////////////////////builder battern/////////////
 // CustomerProfile.java
 public class CustomerProfile {
     private String name;

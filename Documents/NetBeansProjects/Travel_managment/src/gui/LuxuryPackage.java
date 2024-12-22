@@ -9,6 +9,7 @@ package gui;
  *
  * @author icc
  */
+//////////////////////////////singelton pattern//////////
 public class LuxuryPackage implements TravelPackage {
     @Override
     public String getPackageName() {
